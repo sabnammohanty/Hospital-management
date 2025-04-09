@@ -1,0 +1,22 @@
+<div class="p-10 w-full bg-gray-100 min-h-screen">
+    <h1 class="text-2xl font-bold mt-10">Admin Dashboard</h1>
+    <% if (error) { %>
+        <p class="text-red-500"><%= error %></p>
+    <% } %>
+        <div class="flex gap-4 flex-wrap justify-center items-center mt-5">
+            <a href="/doctors/register"><div class="text-center bg-indigo-700 p-5 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                <p class="text-2xl font-semibold">Add Doctor</p>
+            </div></a>
+            <a href="/doctors/list"><div class="text-center bg-amber-700 p-5 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                <p class="text-2xl font-semibold">View Doctors</p>
+            </div></a>
+            <a href="/user/list"><div class="text-center bg-green-700 p-5 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                <p class="text-2xl font-semibold">Total users</p>
+            </div></a>
+            <a href="/works"><div class="text-center bg-red-700 p-5 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                <p class="text-2xl font-semibold">Other works</p>
+            </div></a>
+        </div>
+</div>
+
+    

@@ -1,0 +1,40 @@
+<div class="p-10 w-full bg-gray-100 min-h-screen">
+    <h2 class="text-2xl font-bold mb-4 mt-10">Register a Doctor</h2>
+    
+    <% if (error) { %>
+        <p class="text-red-500"><%= error %></p>
+    <% } %>
+
+    <form action="/doctors/register" method="POST" class="bg-white p-6 rounded-lg shadow-md mb-10 mx-auto w-200 ">
+        <div class="mb-4">
+            <label class="block font-semibold">Name</label>
+            <input type="text" name="name" class="w-full border p-2 rounded" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold">Email</label>
+            <input type="email" name="email" class="w-full border p-2 rounded" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold">Password</label>
+            <input type="password" name="password" class="w-full border p-2 rounded" required />
+        </div>
+
+        <label class="block font-semibold mt-2 ">Specialist Type:</label>
+    <select name="specialty" class="border p-2 w-full rounded mb-4" >
+        <option value="Cardiologist">Cardiologist</option>
+        <option value="Neurologist">Neurologist</option>
+        <option value="Orthopedic">Orthopedic</option>
+        <option value="Pediatrician">Pediatrician</option>
+        <option value="Dermatologist">Dermatologist</option>
+    </select>
+
+        <div class="mb-4">
+            <label class="block font-semibold">Phone</label>
+            <input type="text" name="phone" class="w-full border p-2 rounded" required />
+        </div>
+
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Register</button>
+    </form>
+</div>

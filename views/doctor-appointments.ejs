@@ -1,0 +1,67 @@
+<div class="min-h-screen p-10 mt-10 bg-gray-100 flex flex-col items-center">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Patient Details</h2>
+        <p class="text-lg text-gray-700"><span class="font-semibold">Name:</span> <%= patient.name %></p>
+        <p class="text-lg text-gray-700"><span class="font-semibold">Email:</span> <%= patient.email %></p>
+        <p class="text-lg text-gray-700"><span class="font-semibold">Phone:</span> <%= patient.contactNumber %></p>
+        <% if (!patient.meetLink) { %>
+            <form action="/doctors/schedule-meet/<%= patient._id %>" method="POST" class="mt-4">
+                <button type="submit" class="bg-amber-500 text-white px-6 py-2 rounded-lg hover:bg-amber-600 transition">Schedule Meet</button>
+            </form>
+        <% } else { %>
+            <p class="mt-4 text-lg text-gray-700">Meet Scheduled: <a href="<%= patient.meetLink %>" target="_blank" class="text-blue-500 underline"><%= patient.meetLink %></a></p>
+        <% } %>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl mt-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Add Prescription</h2>
+        <form id="prescription-form" action="/doctors/add-prescription/add" method="POST" class="space-y-4">
+            <input type="hidden" name="patientId" value="<%= patient._id %>" />
+    
+            <div id="medications">
+                <div class="medication">
+                    <label class="block font-semibold text-gray-700">Medication Name:</label>
+                    <input type="text" name="medications[0][medicine]" required class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300" />
+    
+                    <label class="block font-semibold text-gray-700">Dosage:</label>
+                    <input type="text" name="medications[0][dosage]" required class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300" />
+    
+                    <label class="block font-semibold text-gray-700">Instructions:</label>
+                    <input type="text" name="medications[0][instructions]" required class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300" />
+                </div>
+            </div>
+    
+            <button type="button" onclick="addMedication()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">Add Another Medication</button>
+    
+            <div>
+                <label class="block font-semibold text-gray-700">Additional Notes:</label>
+                <textarea name="notes" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"></textarea>
+            </div>
+    
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">Add Prescription</button>
+        </form>
+    </div>
+</div>
+    <script>
+        let medicationCount = 1;
+    
+        function addMedication() {
+            const medicationsDiv = document.getElementById('medications');
+            const newMedication = document.createElement('div');
+            newMedication.classList.add('medication');
+            
+            newMedication.innerHTML = `
+                <label class="block font-semibold text-gray-700">Medication Name:</label>
+                <input type="text" name="medications[${medicationCount}][medicine]" required class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300" />
+    
+                <label class="block font-semibold text-gray-700">Dosage:</label>
+                <input type="text" name="medications[${medicationCount}][dosage]" required class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300" />
+    
+                <label class="block font-semibold text-gray-700">Instructions:</label>
+                <input type="text" name="medications[${medicationCount}][instructions]" required class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300" />
+            `;
+            medicationsDiv.appendChild(newMedication);
+            medicationCount++;
+        }
+    </script>
+    

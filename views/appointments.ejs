@@ -1,0 +1,19 @@
+<h2>Appointment List</h2>
+<ul>
+    <% appointments.forEach(appointment => { %>
+        <li>
+            Patient: <%= appointment.patientId.name %>, 
+            Doctor: <%= appointment.doctorId.name %>, 
+            Date: <%= appointment.date %>, 
+            Time: <%= appointment.time %>
+        </li>
+    <% }) %>
+</ul>
+
+<form action="/appointments/add" method="POST">
+    <input type="text" name="patientId" placeholder="Patient ID" required>
+    <input type="text" name="doctorId" placeholder="Doctor ID" required>
+    <input type="date" name="date" required>
+    <input type="time" name="time" required>
+    <button type="submit">Book Appointment</button>
+</form>

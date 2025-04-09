@@ -1,0 +1,45 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-96 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-xl font-bold text-center mb-4">Sign Up</h2>
+
+        <% if (error) { %>
+            <p class="text-red-500 text-center"><%= error %></p>
+        <% } %>
+
+        <form action="/auth/signup" method="POST" class="space-y-4">
+            <!-- Name Field -->
+            <div>
+                <label class="block font-medium">Name</label>
+                <input type="text" name="name" required 
+                    class="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300" 
+                    placeholder="Enter your name">
+            </div>
+
+            <!-- Email Field -->
+            <div>
+                <label class="block font-medium">Email</label>
+                <input type="email" name="email" required 
+                    class="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300" 
+                    placeholder="Enter your email">
+            </div>
+
+            <!-- Password Field -->
+            <div>
+                <label class="block font-medium">Password</label>
+                <input type="password" name="password" required 
+                    class="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300" 
+                    placeholder="Create a password">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" 
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold p-2 rounded transition">
+                Sign Up
+            </button>
+        </form>
+
+        <p class="text-center mt-4 text-gray-600">Already have an account? 
+            <a href="/auth/login" class="text-blue-500">Login here</a>
+        </p>
+    </div>
+</div>

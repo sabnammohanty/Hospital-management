@@ -1,0 +1,90 @@
+<header class="absolute inset-x-0 top-0 z-50 ">
+  <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <div class="flex lg:flex-1">
+      <a href="/" class="-m-1.5 p-1.5">
+        <span class="text-xl font-bold text-indigo-600">WELLCARE PRO💉</span>
+      </a>
+    </div>
+    <!-- Mobile Menu Button -->
+    <div class="flex lg:hidden">
+      <button id="menu-toggle" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+        <span class="sr-only">Open main menu</span>
+        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+    <!-- Desktop Menu -->
+    <div class="hidden lg:flex lg:gap-x-12">
+      <a href="/" class="text-sm font-semibold text-gray-900">Home</a>
+      <a href="#about" class="text-sm font-semibold text-gray-900">About us</a>
+      <a href="#contact" class="text-sm font-semibold text-gray-900">Contact</a>
+      <a href="#services" class="text-sm font-semibold text-gray-900">Services</a>
+    </div>
+    <div class="ms-5">
+      <% if (session && session.user) { %>
+        <% if (session.user.userType === "admin") { %>
+          <a href="/admin-dashboard" class="bg-white text-blue-600 px-4 py-2 rounded">Dashboard</a>
+      <% } else if (session.user.userType === "doctor") { %>
+          <a href="/doctors/dashboard" class="bg-white text-blue-600 px-4 py-2 rounded">Dashboard</a>
+      <% } else if (session.user.userType === "patient") { %>
+          <a href="/patients/dashboard" class="bg-white text-blue-600 px-4 py-2 rounded">Dashboard</a>
+      <% } %>
+        <span class="ms-5"><%=session.user.email %></span>
+          <a href="/auth/logout" class="px-4 py-2 bg-red-500 text-white rounded">Logout</a>
+      <% } else { %>
+          <a href="/auth/login" class="px-4 py-2 bg-blue-500 text-white rounded">Login</a>
+          <a href="/auth/signup" class="px-4 py-2 bg-green-500 text-white rounded">Signup</a>
+      <% } %>
+  </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm transform translate-x-full transition duration-300 bg-white shadow-lg">
+    <div class="p-6">
+      <div class="flex items-center justify-between">
+        <a href="#" class="-m-1.5 p-1.5">
+          <span class="sr-only">WellCare Pro</span>
+        </a>
+        <button id="close-menu" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+          <span class="sr-only">Close menu</span>
+          <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="mt-6">
+        <div class="space-y-2">
+          <a href="/" class="block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Home</a>
+          <a href="#about" class="block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">About us</a>
+          <a href="#contact" class="block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Contact</a>
+          <a href="#services" class="block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Services</a>
+        </div>
+        <div>
+          <% if (session.user) { %>
+            <span><%= session.user.email %></span>
+              <a href="/auth/logout" class="px-4 py-2 bg-red-500 text-white rounded">Logout</a>
+          <% } else { %>
+              <a href="/auth/login" class="px-4 py-2 bg-blue-500 text-white rounded">Login</a>
+              <a href="/auth/signup" class="px-4 py-2 bg-green-500 text-white rounded">Signup</a>
+          <% } %>
+      </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const closeMenu = document.getElementById("close-menu");
+
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("translate-x-0");
+    mobileMenu.classList.toggle("translate-x-full");
+  });
+
+  closeMenu.addEventListener("click", () => {
+    mobileMenu.classList.add("translate-x-full");
+  });
+</script>

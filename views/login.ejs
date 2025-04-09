@@ -1,0 +1,25 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100 bg-white">
+    <div class="w-96 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-4xl font-bold text-center mb-4">Login</h2>
+        <form action="/auth/login" method="POST">
+            <div class="mb-4">
+                <label class="block font-medium">Email</label>
+                <input type="email" name="email" required class="w-full p-2 border rounded" placeholder="Enter your email">
+            </div>
+            <div class="mb-4">
+                <label class="block font-medium">Password</label>
+                <input type="password" name="password" required class="w-full p-2 border rounded" placeholder="Enter your password">
+            </div>
+            <!-- <div class="mb-4">
+                <label class="block font-medium">User Type</label>
+                <select name="userType" class="w-full p-2 border rounded">
+                    <option value="patient">Patient</option>
+                    <option value="admin">Admin</option>
+                    <option value="doctor">Doctor</option>
+                </select>
+            </div> -->
+            <p class="mb-2">Don't have an account? Sign up as a <a href="/auth/signup" class="text-blue-500 underline">Patient</a></p>
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded cursor-pointer">Login</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<table class="table-auto w-full border-collapse border border-gray-300 mt-20  h-[100vh]">
+    <thead>
+        <tr>
+            <th class="border border-gray-300 px-4 py-2">Patient Name</th>
+            <th class="border border-gray-300 px-4 py-2">Email</th>
+            <th class="border border-gray-300 px-4 py-2">Phone</th>
+            <th class="border border-gray-300 px-4 py-2">Actions</th>
+            <th class="border border-gray-300 px-4 py-2">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% patients.forEach(patient => { %>
+        <tr>
+            <td class="border border-gray-300 px-4 py-2"><%= patient.name %></td>
+            <td class="border border-gray-300 px-4 py-2"><%= patient.email %></td>
+            <td class="border border-gray-300 px-4 py-2"><%= patient.contactNumber %></td>
+            <td class="border border-gray-300 px-4 py-2">
+                <a href="/doctors/patient-details/<%= patient._id %>" class="bg-blue-500 text-white px-3 py-1 rounded">View Details</a>
+            </td>
+            <td class="border border-gray-300 px-4 py-2">
+                <% if (patient.hasPrescription) { %>
+                    ✅ Completed
+                <% } else { %>
+                    ❌ Pending
+                <% } %>
+            </td>
+        </tr>
+        <% }) %>
+    </tbody>
+    </table>
